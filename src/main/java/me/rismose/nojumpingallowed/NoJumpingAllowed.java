@@ -15,11 +15,6 @@ import org.bukkit.util.Vector;
 
 public final class NoJumpingAllowed extends JavaPlugin implements Listener {
 
-    public boolean isJumpMessageOn;
-
-    public NoJumpingAllowed() {
-        isJumpMessageOn = this.getConfig().getBoolean("JumpMessageToggle");
-    }
 
     @Override
     public void onEnable() {
@@ -41,9 +36,11 @@ public final class NoJumpingAllowed extends JavaPlugin implements Listener {
 
     }
 
+    public boolean isJumpMessageOn;
 
-
-
+    public NoJumpingAllowed() {
+        isJumpMessageOn = this.getConfig().getBoolean("JumpMessageToggle");
+    }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
@@ -57,16 +54,17 @@ public final class NoJumpingAllowed extends JavaPlugin implements Listener {
                     jumpVelocity += (double) ((float) jumpPotion.getAmplifier() + 1) * 0.1F;
                 }
                 if (player.getLocation().getBlock().getType() != Material.LADDER && Double.compare(velocity.getY(), jumpVelocity) == 0) {
-
                     if (isJumpMessageOn) {
                         String JumpMessage = getConfig().getString("JumpMessage");
                         player.sendMessage(ChatColor.YELLOW + JumpMessage);
-                    } else if (!isJumpMessageOn) {
-                        // Empty
+
+                        int JumpDMG = getConfig().getInt("JumpDMG");
+                        player.damage(JumpDMG);
+                    } else {
+                        int JumpDMG = getConfig().getInt("JumpDMG");
+                        player.damage(JumpDMG);
                     }
 
-                    int JumpDMG = getConfig().getInt("JumpDMG");
-                    player.damage(JumpDMG * 2);
                 }
             }
     }
