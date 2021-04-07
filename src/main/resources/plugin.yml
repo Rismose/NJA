@@ -1,0 +1,10 @@
+name: NoJumpingAllowed
+version: ${project.version}
+main: me.rismose.nojumpingallowed.NoJumpingAllowed
+api-version: 1.16
+authors: [Rismose]
+description: If you jump you take 0.5 hearts of damage
+commands:
+  reloadhearts:
+    usage: /<command>
+    description: reloads the config file

@@ -1,0 +1,6 @@
+### Decide how much the player should be damaged!
+JumpDMG: 0.5
+### (1 Damage = 1 Heart)
+JumpMessageToggle: true
+JumpMessage: "You jumped!"
+### The message that displays when you jump
